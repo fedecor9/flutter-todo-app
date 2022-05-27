@@ -11,17 +11,16 @@ class ListViewPage extends StatefulWidget {
 }
 
 class _ListViewPageState extends State<ListViewPage> {
-  final _todoList = <Todo>[
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
+  final _todoList = const <Todo>[
+    Todo(title: 'Two-line item', description: 'Secondary text'),
+    Todo(title: 'Two-line item', description: 'Secondary text'),
+    Todo(title: 'Two-line item', description: 'Secondary text'),
+    Todo(title: 'Two-line item', description: 'Secondary text'),
+    Todo(title: 'Two-line item', description: 'Secondary text'),
   ];
 
   void handleCheckbox(bool? newValue, int index) {
-    setState(() => {_todoList[index].done = newValue!});
+    setState(() => {_todoList[index].copyWith(done: newValue!)});
   }
 
   @override
