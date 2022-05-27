@@ -43,16 +43,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}/**
-Column(
-        children: <Widget>[
-          Row(children: const <Widget>[ListViewPage()]),
-          Row(
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: const Text('CLEAR ALL DONE'),
-              )
-            ],
-          )
-        ], */
+}
