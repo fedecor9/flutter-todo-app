@@ -47,8 +47,9 @@ class DetaledTodoPage extends StatelessWidget {
             children: <Widget>[
               Text(
                 todo.done ? 'Done' : 'Not done',
-                style: TextStyle(
-                    color: Colors.red[400], fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                    color: Color.fromARGB(255, 244, 2, 164),
+                    fontWeight: FontWeight.w500),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -63,6 +64,20 @@ class DetaledTodoPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(todo.description),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: GestureDetector(
+                    onTap: () => {},
+                    child: const Text(
+                      'MARK AS DONE',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 244, 2, 164),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
