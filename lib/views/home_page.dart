@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                 'CLEAR ALL DONE',
                 style: TextStyle(
                     color: Color.fromARGB(255, 244, 2, 164),
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.w600),
               ),
             )
           ],
