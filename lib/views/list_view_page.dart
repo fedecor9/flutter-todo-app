@@ -20,7 +20,9 @@ class _ListViewPageState extends State<ListViewPage> {
   ];
 
   void handleCheckbox(bool? newValue, int index) => setState(
-        () => {_todoList[index].done = newValue!},
+        () {
+          _todoList[index].done = newValue!;
+        },
       );
 
   @override
