@@ -18,10 +18,14 @@ class _ListViewPageState extends State<ListViewPage> {
     Todo('Two-line item', 'Secondary text'),
     Todo('Two-line item', 'Secondary text'),
     Todo('Two-line item', 'Secondary text'),
+    Todo('Two-line item', 'Secondary text'),
+    Todo('Two-line item', 'Secondary text'),
   ];
 
   void handleCheckbox(bool? newValue, int index) {
-    setState(() => {_todoList[index].done = newValue!});
+    setState(() {
+      _todoList[index].done = newValue!;
+    });
   }
 
   @override

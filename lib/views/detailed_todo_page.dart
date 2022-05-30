@@ -18,7 +18,7 @@ class _DetaledTodoPageState extends State<DetaledTodoPage> {
       appBar: AppBar(
         title: const Text('Details'),
         leading: Row(
-          children: <Widget>[
+          children: [
             GestureDetector(
               child: const Icon(
                 Icons.navigate_before,

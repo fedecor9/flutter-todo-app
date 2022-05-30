@@ -13,29 +13,36 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NewTodoPage()));
-                  },
-                  icon: const Icon(Icons.add)))
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NewTodoPage()));
+              },
+              icon: const Icon(Icons.add),
+            ),
+          )
         ],
       ),
       body: Container(
         color: Colors.grey[200],
         child: Column(
-          children: const <Widget>[
-            ListViewPage(),
+          children: [
+            const Expanded(
+              child: ListViewPage(),
+            ),
             Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Text(
-                'CLEAR ALL DONE',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 244, 2, 164),
-                    fontWeight: FontWeight.w600),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: TextButton(
+                onPressed: () => {},
+                child: const Text(
+                  'CLEAR ALL DONE',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 244, 2, 164),
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             )
           ],
