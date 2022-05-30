@@ -39,7 +39,16 @@ class NewTodoPage extends StatelessWidget {
                   scale: 1.05,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 244, 2, 164),
+                            width: 2.0),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 244, 2, 164),
+                        ),
+                      ),
                       labelText: 'Task title',
                       labelStyle: TextStyle(color: Colors.grey, fontSize: 30),
                     ),
