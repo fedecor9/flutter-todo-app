@@ -39,13 +39,17 @@ class _ListViewPageState extends State<ListViewPage> {
               checkColor: Colors.white,
               activeColor: const Color.fromARGB(255, 244, 2, 164),
             ),
-            onTap: () => {
-              Navigator.push(
+            onTap: () async {
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const DetaledTodoPage(),
-                    settings: RouteSettings(arguments: _todoList[index])),
-              )
+                  builder: (context) => const DetaledTodoPage(),
+                  settings: RouteSettings(arguments: _todoList[index]),
+                ),
+              );
+              setState(() {
+                _todoList[index] = result;
+              });
             },
           );
         }),
