@@ -32,6 +32,8 @@ class _ListViewPageState extends State<ListViewPage> {
       color: Colors.white,
       child: ListView.separated(
         itemBuilder: ((context, index) {
+          if (index == _todoList.length) return const ClearDoneTodos();
+
           return ListTile(
             title: Text(_todoList[index].title),
             subtitle: const Text('Secondary text'),
@@ -49,15 +51,41 @@ class _ListViewPageState extends State<ListViewPage> {
                   settings: RouteSettings(arguments: _todoList[index]),
                 ),
               );
-              setState(() {
-                _todoList[index] = result;
-              });
+              updateListTile(index, result);
             },
           );
         }),
         separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemCount: _todoList.length,
+        itemCount: _todoList.length + 1,
         shrinkWrap: true,
+      ),
+    );
+  }
+
+  void updateListTile(int index, result) {
+    return setState(() {
+      _todoList[index] = result;
+    });
+  }
+}
+
+class ClearDoneTodos extends StatelessWidget {
+  const ClearDoneTodos({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey[200],
+      child: TextButton(
+        onPressed: () => {},
+        child: const Text(
+          'CLEAR ALL DONE',
+          style: TextStyle(
+              color: Color.fromARGB(255, 244, 2, 164),
+              fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }

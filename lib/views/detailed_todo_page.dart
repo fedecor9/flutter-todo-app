@@ -73,11 +73,11 @@ class _DetaledTodoPageState extends State<DetaledTodoPage> {
                 padding: const EdgeInsets.only(top: 20),
                 child: TextButton(
                   onPressed: () => setState(() {
-                    todo.done = true;
+                    todo.done = !todo.done;
                   }),
-                  child: const Text(
-                    'MARK AS DONE',
-                    style: TextStyle(
+                  child: Text(
+                    todo.done ? 'MARK AS NOT DONE' : 'MARK AS DONE',
+                    style: const TextStyle(
                         color: Color.fromARGB(255, 244, 2, 164),
                         fontWeight: FontWeight.w600),
                   ),
