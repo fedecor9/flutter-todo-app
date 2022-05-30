@@ -15,9 +15,6 @@ class _ListViewPageState extends State<ListViewPage> {
     Todo(title: 'Two-line item', description: 'description'),
     Todo(title: 'Two-line item', description: 'description'),
     Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
   ];
 
   void handleCheckbox(bool? newValue, int index) => setState(
@@ -48,14 +45,23 @@ class _ListViewPageState extends State<ListViewPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const DetaledTodoPage(),
-                  settings: RouteSettings(arguments: _todoList[index]),
+                  settings: RouteSettings(
+                    arguments: _todoList[index],
+                  ),
                 ),
               );
               updateListTile(index, result);
             },
           );
         }),
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        separatorBuilder: (BuildContext context, int index) {
+          if (index == _todoList.length - 1) {
+            return const Divider(
+              color: Colors.transparent,
+            );
+          }
+          return const Divider();
+        },
         itemCount: _todoList.length + 1,
         shrinkWrap: true,
       ),
@@ -77,7 +83,7 @@ class ClearDoneTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      color: const Color.fromARGB(108, 243, 243, 243),
       child: TextButton(
         onPressed: () => {},
         child: const Text(
