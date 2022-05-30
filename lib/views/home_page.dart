@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todo'),
         centerTitle: true,
-        actions: <Widget>[
+        actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
