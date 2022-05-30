@@ -12,7 +12,7 @@ class DetaledTodoPage extends StatefulWidget {
 class _DetaledTodoPageState extends State<DetaledTodoPage> {
   @override
   Widget build(BuildContext context) {
-    final todo = context.extractTodo();
+    final todo = context.extractArguments() as Todo;
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +79,7 @@ class _DetaledTodoPageState extends State<DetaledTodoPage> {
                     'MARK AS DONE',
                     style: TextStyle(
                         color: Color.fromARGB(255, 244, 2, 164),
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -92,7 +92,5 @@ class _DetaledTodoPageState extends State<DetaledTodoPage> {
 }
 
 extension ArgumentExtractor on BuildContext {
-  Todo extractTodo() {
-    return ModalRoute.of(this)!.settings.arguments as Todo;
-  }
+  extractArguments() => ModalRoute.of(this)!.settings.arguments;
 }

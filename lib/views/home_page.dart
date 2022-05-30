@@ -17,9 +17,11 @@ class HomePage extends StatelessWidget {
             child: IconButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NewTodoPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NewTodoPage(),
+                  ),
+                );
               },
               icon: const Icon(Icons.add),
             ),
