@@ -11,13 +11,17 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewPageState extends State<ListViewPage> {
   final _todoList = <Todo>[
-    Todo('Two-line item', 'description'),
-    Todo('Two-line item', 'description'),
-    Todo('Two-line item', 'description'),
-    Todo('Two-line item', 'description'),
-    Todo('Two-line item', 'description'),
-    Todo('Two-line item', 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
   ];
+
+  void handleCheckbox(bool? newValue, int index) => setState(
+        () => {_todoList[index].done = newValue!},
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +34,7 @@ class _ListViewPageState extends State<ListViewPage> {
             subtitle: const Text('Secondary text'),
             trailing: Checkbox(
               value: _todoList[index].done,
-              onChanged: (bool? newValue) =>
-                  setState(() => {_todoList[index].done = newValue!}),
+              onChanged: (bool? newValue) => handleCheckbox(newValue, index),
               checkColor: Colors.white,
               activeColor: const Color.fromARGB(255, 244, 2, 164),
             ),

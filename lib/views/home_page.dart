@@ -13,15 +13,19 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NewTodoPage()));
-                  },
-                  icon: const Icon(Icons.add)))
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NewTodoPage(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.add),
+            ),
+          )
         ],
       ),
       body: Container(
