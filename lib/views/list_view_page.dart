@@ -12,21 +12,17 @@ class ListViewPage extends StatefulWidget {
 
 class _ListViewPageState extends State<ListViewPage> {
   final _todoList = <Todo>[
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
-    Todo('Two-line item', 'Secondary text'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
+    Todo(title: 'Two-line item', description: 'description'),
   ];
 
-  void handleCheckbox(bool? newValue, int index) {
-    setState(() {
-      _todoList[index].done = newValue!;
-    });
-  }
+  void handleCheckbox(bool? newValue, int index) => setState(
+        () => {_todoList[index].done = newValue!},
+      );
 
   @override
   Widget build(BuildContext context) {
