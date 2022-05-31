@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todo'),
         centerTitle: true,
-        actions: <Widget>[
+        actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
@@ -30,20 +30,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         color: Colors.grey[200],
-        child: Column(
-          children: const <Widget>[
-            ListViewPage(),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Text(
-                'CLEAR ALL DONE',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 244, 2, 164),
-                    fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
-        ),
+        child: const ListViewPage(),
       ),
     );
   }
