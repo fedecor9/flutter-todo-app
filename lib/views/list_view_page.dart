@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/detailed_todo_page.dart';
 
 import '../models/todo.dart';
@@ -11,67 +13,59 @@ class ListViewPage extends StatefulWidget {
 }
 
 class _ListViewPageState extends State<ListViewPage> {
-  final _todoList = <Todo>[
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-  ];
-
-  void handleCheckbox(bool? newValue, int index) => setState(
-        () {
-          _todoList[index].done = newValue!;
-        },
-      );
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: ListView.separated(
-        itemBuilder: ((context, index) {
-          if (index == _todoList.length) return const ClearDoneTodos();
-
-          return ListTile(
-            title: Text(_todoList[index].title),
-            subtitle: const Text('Secondary text'),
-            trailing: Checkbox(
-              value: _todoList[index].done,
-              onChanged: (bool? newValue) => handleCheckbox(newValue, index),
-              checkColor: Colors.white,
-              activeColor: const Color.fromARGB(255, 244, 2, 164),
-            ),
-            onTap: () async {
-              final result = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DetaledTodoPage(),
-                  settings: RouteSettings(
-                    arguments: _todoList[index],
-                  ),
+    final cubit = BlocProvider.of<TodolistCubit>(context);
+    print(cubit.state);
+    return BlocBuilder<TodolistCubit, List<Todo>>(
+      builder: (context, state) {
+        return Container(
+          color: Colors.white,
+          child: ListView.separated(
+            itemBuilder: ((context, index) {
+              if (index == state.length) return const ClearDoneTodos();
+              if (index > state.length) {
+                return const Divider(
+                  color: Colors.transparent,
+                );
+              }
+              return ListTile(
+                title: Text(state[index].title),
+                subtitle: Text(state[index].title),
+                trailing: Checkbox(
+                  value: state[index].done,
+                  onChanged: (bool? newValue) =>
+                      cubit.updateTodo(index, newValue),
+                  checkColor: Colors.white,
+                  activeColor: const Color.fromARGB(255, 244, 2, 164),
                 ),
+                onTap: () async {
+                  final result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetaledTodoPage(),
+                      settings: RouteSettings(
+                        arguments: state[index],
+                      ),
+                    ),
+                  );
+                },
               );
-              updateListTile(index, result);
+            }),
+            separatorBuilder: (BuildContext context, int index) {
+              if (index == state.length - 1) {
+                return const Divider(
+                  color: Colors.transparent,
+                );
+              }
+              return const Divider();
             },
-          );
-        }),
-        separatorBuilder: (BuildContext context, int index) {
-          if (index == _todoList.length - 1) {
-            return const Divider(
-              color: Colors.transparent,
-            );
-          }
-          return const Divider();
-        },
-        itemCount: _todoList.length + 1,
-        shrinkWrap: true,
-      ),
+            itemCount: cubit.state.length + 1,
+            shrinkWrap: true,
+          ),
+        );
+      },
     );
-  }
-
-  void updateListTile(int index, result) {
-    return setState(() {
-      _todoList[index] = result;
-    });
   }
 }
 

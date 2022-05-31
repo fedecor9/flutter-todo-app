@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewTodoPage extends StatelessWidget {
+import '../cubit/todolist_cubit.dart';
+import '../models/todo.dart';
+
+class NewTodoPage extends StatefulWidget {
   const NewTodoPage({Key? key}) : super(key: key);
+
+  @override
+  State<NewTodoPage> createState() => _NewTodoPageState();
+}
+
+class _NewTodoPageState extends State<NewTodoPage> {
+  TextEditingController tittleController = TextEditingController();
+
+  TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +26,17 @@ class NewTodoPage extends StatelessWidget {
                   textStyle: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w400),
                   primary: Colors.white),
-              onPressed: () => {Navigator.pop(context)},
+              onPressed: () {
+                Todo item = Todo(
+                    title: tittleController.text,
+                    description: descriptionController.text);
+                BlocProvider.of<TodolistCubit>(context).addTodo(item);
+
+                Navigator.pop(
+                  context,
+                  item,
+                );
+              },
               child: const Text('Save'))
         ],
         leading: TextButton(
@@ -38,6 +61,7 @@ class NewTodoPage extends StatelessWidget {
                 Transform.scale(
                   scale: 1.05,
                   child: TextFormField(
+                    controller: tittleController,
                     decoration: const InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -55,6 +79,7 @@ class NewTodoPage extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  controller: descriptionController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Task description',
