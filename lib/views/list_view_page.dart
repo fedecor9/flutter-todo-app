@@ -85,7 +85,7 @@ class ClearDoneTodos extends StatelessWidget {
     return Container(
       color: const Color.fromARGB(108, 243, 243, 243),
       child: TextButton(
-        onPressed: () => {},
+        onPressed: () {},
         child: const Text(
           'CLEAR ALL DONE',
           style: TextStyle(
