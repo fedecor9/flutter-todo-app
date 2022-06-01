@@ -5,17 +5,13 @@ import 'package:todo_app/extensions/build_context_extensions.dart';
 
 import 'package:todo_app/models/todo.dart';
 
-class DetaledTodoPage extends StatefulWidget {
+class DetaledTodoPage extends StatelessWidget {
   const DetaledTodoPage({Key? key}) : super(key: key);
 
   @override
-  State<DetaledTodoPage> createState() => _DetaledTodoPageState();
-}
-
-class _DetaledTodoPageState extends State<DetaledTodoPage> {
-  @override
   Widget build(BuildContext context) {
     final index = context.arguments as int;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),

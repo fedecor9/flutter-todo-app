@@ -13,4 +13,9 @@ class TodolistCubit extends Cubit<List<Todo>> {
     state[index].done = value!;
     return emit([...state]);
   }
+
+  void clearDone() {
+    state.removeWhere((element) => element.done == true);
+    return emit([...state]);
+  }
 }

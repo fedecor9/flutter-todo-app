@@ -5,14 +5,8 @@ import 'package:todo_app/views/detailed_todo_page.dart';
 
 import '../models/todo.dart';
 
-class ListViewPage extends StatefulWidget {
+class ListViewPage extends StatelessWidget {
   const ListViewPage({Key? key}) : super(key: key);
-
-  @override
-  _ListViewPageState createState() => _ListViewPageState();
-}
-
-class _ListViewPageState extends State<ListViewPage> {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TodolistCubit>(context);
@@ -23,7 +17,11 @@ class _ListViewPageState extends State<ListViewPage> {
           color: Colors.white,
           child: ListView.separated(
             itemBuilder: ((context, index) {
-              if (index == state.length) return const ClearDoneTodos();
+              if (index == state.length) {
+                return ClearDoneTodos(
+                  handleClearDone: cubit.clearDone,
+                );
+              }
               if (index > state.length) {
                 return const Divider(
                   color: Colors.transparent,
@@ -72,14 +70,17 @@ class _ListViewPageState extends State<ListViewPage> {
 class ClearDoneTodos extends StatelessWidget {
   const ClearDoneTodos({
     Key? key,
+    this.handleClearDone,
   }) : super(key: key);
+
+  final VoidCallback? handleClearDone;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromARGB(108, 243, 243, 243),
       child: TextButton(
-        onPressed: () {},
+        onPressed: handleClearDone,
         child: const Text(
           'CLEAR ALL DONE',
           style: TextStyle(
