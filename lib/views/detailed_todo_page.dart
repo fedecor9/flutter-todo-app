@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/extensions/build_context_extensions.dart';
 
 import 'package:todo_app/models/todo.dart';
@@ -13,15 +15,14 @@ class DetaledTodoPage extends StatefulWidget {
 class _DetaledTodoPageState extends State<DetaledTodoPage> {
   @override
   Widget build(BuildContext context) {
-    final todo = context.arguments as Todo;
-
+    final index = context.arguments as int;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),
         leading: Row(
           children: [
             TextButton.icon(
-              onPressed: () => Navigator.pop(context, todo),
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.navigate_before,
                 color: Colors.white,
@@ -38,51 +39,56 @@ class _DetaledTodoPageState extends State<DetaledTodoPage> {
         ),
         leadingWidth: 100,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        color: Colors.white,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              todo.done ? 'Done' : 'Not done',
-              style: const TextStyle(
-                  color: Color.fromARGB(255, 244, 2, 164),
-                  fontWeight: FontWeight.w500),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                todo.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30,
+      body: BlocBuilder<TodolistCubit, List<Todo>>(
+        builder: (context, state) {
+          return Container(
+            padding: const EdgeInsets.all(20),
+            color: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  state[index].done ? 'Done' : 'Not done',
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 244, 2, 164),
+                      fontWeight: FontWeight.w500),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(todo.description),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: TextButton(
-                  onPressed: () => setState(() {
-                    todo.done = !todo.done;
-                  }),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    todo.done ? 'MARK AS NOT DONE' : 'MARK AS DONE',
+                    state[index].title,
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 244, 2, 164),
-                        fontWeight: FontWeight.w600),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 30,
+                    ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(state[index].description),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: TextButton(
+                      onPressed: () {
+                        BlocProvider.of<TodolistCubit>(context)
+                            .updateTodo(index, !state[index].done);
+                      },
+                      child: Text(
+                        state[index].done ? 'MARK AS NOT DONE' : 'MARK AS DONE',
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 244, 2, 164),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

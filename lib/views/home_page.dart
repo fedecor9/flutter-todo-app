@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/list_view_page.dart';
 import 'package:todo_app/views/new_todo_page.dart';
 
