@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/todolist_cubit.dart';
+import '../extensions/build_context_extensions.dart';
 import '../models/todo.dart';
 
 class NewTodoPage extends StatefulWidget {
@@ -12,9 +13,11 @@ class NewTodoPage extends StatefulWidget {
 }
 
 class _NewTodoPageState extends State<NewTodoPage> {
-  TextEditingController tittleController = TextEditingController();
+  final TextEditingController tittleController = TextEditingController();
 
-  TextEditingController descriptionController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  final bloc = BlocProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
               Todo item = Todo(
                   title: tittleController.text,
                   description: descriptionController.text);
-              BlocProvider.of<TodolistCubit>(context).addTodo(item);
+              context.cubit<TodolistCubit>().addTodo(item);
               Navigator.pop(
                 context,
                 item,

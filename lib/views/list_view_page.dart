@@ -15,64 +15,70 @@ class ListViewPage extends StatelessWidget {
       builder: (context, state) {
         return Container(
           color: Colors.white,
-          child: state.isNotEmpty
-              ? ListView.separated(
-                  itemBuilder: ((context, index) {
-                    if (index == state.length) {
-                      return ClearDoneTodos(
-                        handleClearDone: cubit.clearDone,
-                      );
-                    }
-
-                    return ListTile(
-                      title: Text(state[index].title),
-                      subtitle: Text(state[index].title),
-                      trailing: Checkbox(
-                        value: state[index].done,
-                        onChanged: (bool? newValue) =>
-                            cubit.updateTodo(index, newValue),
-                        checkColor: Colors.white,
-                        activeColor: const Color.fromARGB(255, 244, 2, 164),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DetaledTodoPage(),
-                            settings: RouteSettings(
-                              arguments: index,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }),
-                  separatorBuilder: (BuildContext context, int index) {
-                    if (index == state.length - 1) {
-                      return const Divider(
-                        color: Colors.transparent,
-                      );
-                    }
-                    return const Divider();
-                  },
-                  itemCount: state.length + 1,
-                  shrinkWrap: true,
-                )
-              : Container(
-                  color: Colors.grey[200],
-                  child: const Center(
-                    child: Text(
-                      "You don't have any todos",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 244, 2, 164),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                ),
+          child:
+              state.isNotEmpty ? todolistTiles(state, cubit) : emtpyTodoList(),
         );
       },
+    );
+  }
+
+  Container emtpyTodoList() {
+    return Container(
+      color: Colors.grey[200],
+      child: const Center(
+        child: Text(
+          "You don't have any todos",
+          style: TextStyle(
+            color: Color.fromARGB(255, 244, 2, 164),
+            fontWeight: FontWeight.w600,
+            fontSize: 17,
+          ),
+        ),
+      ),
+    );
+  }
+
+  ListView todolistTiles(List<Todo> state, TodolistCubit cubit) {
+    return ListView.separated(
+      itemBuilder: ((context, index) {
+        if (index == state.length) {
+          return ClearDoneTodos(
+            handleClearDone: cubit.clearDone,
+          );
+        }
+
+        return ListTile(
+          title: Text(state[index].title),
+          subtitle: Text(state[index].title),
+          trailing: Checkbox(
+            value: state[index].done,
+            onChanged: (bool? newValue) => cubit.updateTodo(index, newValue),
+            checkColor: Colors.white,
+            activeColor: const Color.fromARGB(255, 244, 2, 164),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetaledTodoPage(),
+                settings: RouteSettings(
+                  arguments: index,
+                ),
+              ),
+            );
+          },
+        );
+      }),
+      separatorBuilder: (BuildContext context, int index) {
+        if (index == state.length - 1) {
+          return const Divider(
+            color: Colors.transparent,
+          );
+        }
+        return const Divider();
+      },
+      itemCount: state.length + 1,
+      shrinkWrap: true,
     );
   }
 }

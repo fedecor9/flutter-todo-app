@@ -4,9 +4,7 @@ import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/home_page.dart';
 
 void main(List<String> args) {
-  BlocOverrides.runZoned(
-    () => runApp(const TodoApp()),
-  );
+  runApp(const TodoApp());
 }
 
 class TodoApp extends StatelessWidget {

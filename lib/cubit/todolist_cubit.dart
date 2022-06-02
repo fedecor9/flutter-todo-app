@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import '../models/todo.dart';
 
+//TODO List<Todo>> to TodoListState
 class TodolistCubit extends Cubit<List<Todo>> {
   TodolistCubit() : super([]);
 
