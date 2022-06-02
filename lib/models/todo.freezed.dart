@@ -14,13 +14,20 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Todo _$TodoFromJson(Map<String, dynamic> json) {
+  return _Todo.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Todo {
   String get title => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'text')
   String get description => throw _privateConstructorUsedError;
   bool get done => throw _privateConstructorUsedError;
   set done(bool value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
 }
@@ -29,7 +36,11 @@ mixin _$Todo {
 abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res>;
-  $Res call({String title, String description, bool done});
+  $Res call(
+      {String title,
+      String id,
+      @JsonKey(name: 'text') String description,
+      bool done});
 }
 
 /// @nodoc
@@ -43,6 +54,7 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
   @override
   $Res call({
     Object? title = freezed,
+    Object? id = freezed,
     Object? description = freezed,
     Object? done = freezed,
   }) {
@@ -50,6 +62,10 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       description: description == freezed
           ? _value.description
@@ -68,7 +84,11 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$$_TodoCopyWith(_$_Todo value, $Res Function(_$_Todo) then) =
       __$$_TodoCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String description, bool done});
+  $Res call(
+      {String title,
+      String id,
+      @JsonKey(name: 'text') String description,
+      bool done});
 }
 
 /// @nodoc
@@ -83,6 +103,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
+    Object? id = freezed,
     Object? description = freezed,
     Object? done = freezed,
   }) {
@@ -90,6 +111,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       description: description == freezed
           ? _value.description
@@ -104,13 +129,22 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Todo with DiagnosticableTreeMixin implements _Todo {
-  _$_Todo({required this.title, required this.description, this.done = false});
+  _$_Todo(
+      {required this.title,
+      required this.id,
+      @JsonKey(name: 'text') required this.description,
+      this.done = false});
+
+  factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
 
   @override
   final String title;
   @override
+  final String id;
+  @override
+  @JsonKey(name: 'text')
   final String description;
   @override
   @JsonKey()
@@ -118,7 +152,7 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Todo(title: $title, description: $description, done: $done)';
+    return 'Todo(title: $title, id: $id, description: $description, done: $done)';
   }
 
   @override
@@ -127,6 +161,7 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
     properties
       ..add(DiagnosticsProperty('type', 'Todo'))
       ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('done', done));
   }
@@ -135,17 +170,28 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
   @override
   _$$_TodoCopyWith<_$_Todo> get copyWith =>
       __$$_TodoCopyWithImpl<_$_Todo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TodoToJson(this);
+  }
 }
 
 abstract class _Todo implements Todo {
   factory _Todo(
       {required final String title,
-      required final String description,
+      required final String id,
+      @JsonKey(name: 'text') required final String description,
       bool done}) = _$_Todo;
+
+  factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
   @override
   String get title => throw _privateConstructorUsedError;
   @override
+  String get id => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'text')
   String get description => throw _privateConstructorUsedError;
   @override
   bool get done => throw _privateConstructorUsedError;

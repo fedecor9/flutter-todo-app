@@ -28,6 +28,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
                 primary: Colors.white),
             onPressed: () {
               Todo item = Todo(
+                  id: '',
                   title: tittleController.text,
                   description: descriptionController.text);
               BlocProvider.of<TodolistCubit>(context).addTodo(item);

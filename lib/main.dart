@@ -4,9 +4,7 @@ import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/home_page.dart';
 
 void main(List<String> args) {
-  BlocOverrides.runZoned(
-    () => runApp(const TodoApp()),
-  );
+  runApp(const TodoApp());
 }
 
 class TodoApp extends StatelessWidget {
@@ -15,7 +13,7 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TodolistCubit(),
+      create: (context) => TodolistCubit()..fetchTodos(),
       child: const MaterialApp(
         title: 'Todo App',
         home: HomePage(),
