@@ -8,7 +8,7 @@ import '../models/todo.dart';
 class TodolistCubit extends Cubit<List<Todo>> {
   TodolistCubit() : super([]);
 
-  final iTodoRepository = TodoRepository(Dio());
+  final ITodoRepository iTodoRepository = TodoRepository(Dio());
 
   void fetchTodos() async {
     return emit(
@@ -22,13 +22,16 @@ class TodolistCubit extends Cubit<List<Todo>> {
     return emit([...state, newTodo]);
   }
 
-  void updateTodo(int index, bool? value) {
-    state[index].done = value!;
-    return emit([...state]);
+  void updateTodo(int index, bool? value) async {
+    return emit(await iTodoRepository.updateTodo(
+        url: 'http://localhost:3005/api/note', todoId: state[index].id));
   }
 
-  void clearDone() {
-    state.removeWhere((element) => element.done == true);
-    return emit([...state]);
+  void clearDone() async {
+    List<String?> todosId = state.map((element) {
+      if (element.done == true) return element.id;
+    }).toList();
+    return emit(await iTodoRepository.removeTodos(
+        url: 'http://localhost:3005/api/notes', todosId: todosId));
   }
 }

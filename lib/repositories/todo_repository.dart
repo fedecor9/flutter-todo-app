@@ -16,7 +16,6 @@ class TodoRepository implements ITodoRepository {
         todos.add(Todo.fromJson(todo));
       }).toList();
     } on Exception catch (e) {
-      // TODO
       print(e);
     }
     return todos;
@@ -35,5 +34,33 @@ class TodoRepository implements ITodoRepository {
       print(e);
       return newTodo;
     }
+  }
+
+  @override
+  Future<List<Todo>> updateTodo(
+      {required String url, required String todoId}) async {
+    // TODO: implement updateTodo
+    List<Todo> todos = [];
+    url = '$url/$todoId';
+    try {
+      var response = await _dio.put(url);
+      response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
+    } catch (e) {
+      print(e);
+    }
+    return todos;
+  }
+
+  @override
+  Future<List<Todo>> removeTodos(
+      {required String url, required List<String?> todosId}) async {
+    List<Todo> todos = [];
+    try {
+      var response = await _dio.put(url, data: todosId);
+      response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
+    } catch (e) {
+      print(e);
+    }
+    return todos;
   }
 }
