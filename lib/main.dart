@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/home_page.dart';
 
 void main(List<String> args) {
@@ -10,9 +12,12 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Todo App',
-      home: HomePage(),
+    return BlocProvider(
+      create: (context) => TodolistCubit(),
+      child: const MaterialApp(
+        title: 'Todo App',
+        home: HomePage(),
+      ),
     );
   }
 }

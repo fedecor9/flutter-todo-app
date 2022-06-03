@@ -1,91 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/detailed_todo_page.dart';
 
+import '../cubit/todo_list_states.dart';
 import '../models/todo.dart';
 
-class ListViewPage extends StatefulWidget {
+class ListViewPage extends StatelessWidget {
   const ListViewPage({Key? key}) : super(key: key);
-
-  @override
-  _ListViewPageState createState() => _ListViewPageState();
-}
-
-class _ListViewPageState extends State<ListViewPage> {
-  final _todoList = <Todo>[
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-    Todo(title: 'Two-line item', description: 'description'),
-  ];
-
-  void handleCheckbox(bool? newValue, int index) => setState(
-        () {
-          _todoList[index].done = newValue!;
-        },
-      );
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: ListView.separated(
-        itemBuilder: ((context, index) {
-          if (index == _todoList.length) return const ClearDoneTodos();
+    final cubit = BlocProvider.of<TodolistCubit>(context);
 
-          return ListTile(
-            title: Text(_todoList[index].title),
-            subtitle: const Text('Secondary text'),
-            trailing: Checkbox(
-              value: _todoList[index].done,
-              onChanged: (bool? newValue) => handleCheckbox(newValue, index),
-              checkColor: Colors.white,
-              activeColor: const Color.fromARGB(255, 244, 2, 164),
-            ),
-            onTap: () async {
-              final result = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DetaledTodoPage(),
-                  settings: RouteSettings(
-                    arguments: _todoList[index],
-                  ),
-                ),
-              );
-              updateListTile(index, result);
-            },
-          );
-        }),
-        separatorBuilder: (BuildContext context, int index) {
-          if (index == _todoList.length - 1) {
-            return const Divider(
-              color: Colors.transparent,
-            );
-          }
-          return const Divider();
-        },
-        itemCount: _todoList.length + 1,
-        shrinkWrap: true,
+    return BlocBuilder<TodolistCubit, TodoListState>(
+      builder: (context, state) {
+        return Container(
+          color: Colors.white,
+          child: state.todos.isNotEmpty
+              ? todolistTiles(state.todos, cubit)
+              : emtpyTodoList(),
+        );
+      },
+    );
+  }
+
+  Container emtpyTodoList() {
+    return Container(
+      color: Colors.grey[100],
+      child: const Center(
+        child: Text(
+          "You don't have any todos",
+          style: TextStyle(
+            color: Color.fromARGB(255, 244, 2, 164),
+            fontWeight: FontWeight.w600,
+            fontSize: 17,
+          ),
+        ),
       ),
     );
   }
 
-  void updateListTile(int index, result) {
-    return setState(() {
-      _todoList[index] = result;
-    });
-  }
+  ListView todolistTiles(List<Todo> state, TodolistCubit cubit) =>
+      ListView.separated(
+        itemBuilder: ((context, index) {
+          return (index == state.length)
+              ? ClearDoneTodos(
+                  handleClearDone: cubit.clearDone,
+                )
+              : ListTile(
+                  title: Text(state[index].title),
+                  subtitle: Text(state[index].title),
+                  trailing: Checkbox(
+                    value: state[index].done,
+                    onChanged: (bool? newValue) =>
+                        cubit.updateTodo(index, newValue),
+                    checkColor: Colors.white,
+                    activeColor: const Color.fromARGB(255, 244, 2, 164),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DetaledTodoPage(),
+                        settings: RouteSettings(
+                          arguments: index,
+                        ),
+                      ),
+                    );
+                  },
+                );
+        }),
+        separatorBuilder: (BuildContext context, int index) {
+          return (index == state.length - 1)
+              ? const Divider(
+                  color: Colors.transparent,
+                )
+              : const Divider();
+        },
+        itemCount: state.length + 1,
+        shrinkWrap: true,
+      );
 }
 
 class ClearDoneTodos extends StatelessWidget {
   const ClearDoneTodos({
     Key? key,
+    this.handleClearDone,
   }) : super(key: key);
+
+  final VoidCallback? handleClearDone;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(108, 243, 243, 243),
+      color: Colors.grey[50],
       child: TextButton(
-        onPressed: () {},
+        onPressed: handleClearDone,
         child: const Text(
           'CLEAR ALL DONE',
           style: TextStyle(
