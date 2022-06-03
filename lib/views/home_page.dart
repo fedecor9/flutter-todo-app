@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Colors.grey[200],
+        color: Colors.grey[100],
         child: const ListViewPage(),
       ),
     );

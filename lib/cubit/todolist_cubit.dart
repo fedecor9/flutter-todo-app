@@ -5,7 +5,7 @@ import '../models/todo.dart';
 
 //TODO List<Todo>> to TodoListState
 class TodolistCubit extends Cubit<TodoListState> {
-  TodolistCubit() : super(TodoListInitialState());
+  TodolistCubit() : super(TodoListInitialState(todos: const []));
 
   void addTodo(Todo todo) {
     return emit(TodoListLoadedState(todos: [...state.todos, todo]));

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../models/todo.dart';
+part 'todo_list_states.freezed.dart';
 
 @immutable
 abstract class TodoListState {
   List<Todo> get todos => [];
 }
 
-class TodoListInitialState extends TodoListState {}
+@freezed
+class TodoListInitialState extends TodoListState with _$TodoListInitialState {
+  factory TodoListInitialState({required final List<Todo> todos}) =
+      _TodoListInitialState;
+}
 
-class TodoListLoadedState extends TodoListState {
-  @override
-  final List<Todo> todos;
-
-  TodoListLoadedState({required this.todos});
+@unfreezed
+class TodoListLoadedState extends TodoListState with _$TodoListLoadedState {
+  factory TodoListLoadedState({required List<Todo> todos}) =
+      _TodoListLoadedState;
 }
