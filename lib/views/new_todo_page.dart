@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/todolist_cubit.dart';
+import '../extensions/build_context_extensions.dart';
 import '../models/todo.dart';
 
 class NewTodoPage extends StatefulWidget {
@@ -12,9 +13,11 @@ class NewTodoPage extends StatefulWidget {
 }
 
 class _NewTodoPageState extends State<NewTodoPage> {
-  TextEditingController tittleController = TextEditingController();
+  final TextEditingController tittleController = TextEditingController();
 
-  TextEditingController descriptionController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  final bloc = BlocProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
         title: const Text('New task'),
       ),
       body: Container(
-        color: Colors.grey[200],
+        color: Colors.grey[100],
         child: Column(
           children: [
             Container(
