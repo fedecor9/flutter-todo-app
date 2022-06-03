@@ -1,22 +1,23 @@
 import 'package:bloc/bloc.dart';
+import 'package:todo_app/cubit/todo_list_states.dart';
 
 import '../models/todo.dart';
 
 //TODO List<Todo>> to TodoListState
-class TodolistCubit extends Cubit<List<Todo>> {
-  TodolistCubit() : super([]);
+class TodolistCubit extends Cubit<TodoListState> {
+  TodolistCubit() : super(TodoListInitialState());
 
   void addTodo(Todo todo) {
-    return emit([...state, todo]);
+    return emit(TodoListLoadedState(todos: [...state.todos, todo]));
   }
 
   void updateTodo(int index, bool? value) {
-    state[index].done = value!;
-    return emit([...state]);
+    state.todos[index].done = value!;
+    return emit(TodoListLoadedState(todos: [...state.todos]));
   }
 
   void clearDone() {
-    state.removeWhere((element) => element.done == true);
-    return emit([...state]);
+    state.todos.removeWhere((element) => element.done == true);
+    return emit(TodoListLoadedState(todos: [...state.todos]));
   }
 }

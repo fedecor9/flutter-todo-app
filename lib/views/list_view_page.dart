@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/detailed_todo_page.dart';
 
+import '../cubit/todo_list_states.dart';
 import '../models/todo.dart';
 
 class ListViewPage extends StatelessWidget {
@@ -11,12 +12,13 @@ class ListViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TodolistCubit>(context);
 
-    return BlocBuilder<TodolistCubit, List<Todo>>(
+    return BlocBuilder<TodolistCubit, TodoListState>(
       builder: (context, state) {
         return Container(
           color: Colors.white,
-          child:
-              state.isNotEmpty ? todolistTiles(state, cubit) : emtpyTodoList(),
+          child: state.todos.isNotEmpty
+              ? todolistTiles(state.todos, cubit)
+              : emtpyTodoList(),
         );
       },
     );

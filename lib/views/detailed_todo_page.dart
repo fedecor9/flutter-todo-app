@@ -5,6 +5,8 @@ import 'package:todo_app/extensions/build_context_extensions.dart';
 
 import 'package:todo_app/models/todo.dart';
 
+import '../cubit/todo_list_states.dart';
+
 class DetaledTodoPage extends StatelessWidget {
   const DetaledTodoPage({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class DetaledTodoPage extends StatelessWidget {
         ),
         leadingWidth: 100,
       ),
-      body: BlocBuilder<TodolistCubit, List<Todo>>(
+      body: BlocBuilder<TodolistCubit, TodoListState>(
         builder: (context, state) {
           return Container(
             padding: const EdgeInsets.all(20),
@@ -45,7 +47,7 @@ class DetaledTodoPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  state[index].done ? 'Done' : 'Not done',
+                  state.todos[index].done ? 'Done' : 'Not done',
                   style: const TextStyle(
                       color: Color.fromARGB(255, 244, 2, 164),
                       fontWeight: FontWeight.w500),
@@ -53,7 +55,7 @@ class DetaledTodoPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    state[index].title,
+                    state.todos[index].title,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 30,
@@ -62,7 +64,7 @@ class DetaledTodoPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(state[index].description),
+                  child: Text(state.todos[index].description),
                 ),
                 Center(
                   child: Padding(
@@ -70,10 +72,12 @@ class DetaledTodoPage extends StatelessWidget {
                     child: TextButton(
                       onPressed: () {
                         BlocProvider.of<TodolistCubit>(context)
-                            .updateTodo(index, !state[index].done);
+                            .updateTodo(index, !state.todos[index].done);
                       },
                       child: Text(
-                        state[index].done ? 'MARK AS NOT DONE' : 'MARK AS DONE',
+                        state.todos[index].done
+                            ? 'MARK AS NOT DONE'
+                            : 'MARK AS DONE',
                         style: const TextStyle(
                             color: Color.fromARGB(255, 244, 2, 164),
                             fontWeight: FontWeight.w600),

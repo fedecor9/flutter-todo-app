@@ -1,7 +1,17 @@
+import 'package:flutter/material.dart';
+
 import '../models/todo.dart';
 
-class TodoListState {
-  final List<Todo> todos = [];
+@immutable
+abstract class TodoListState {
+  List<Todo> get todos => [];
+}
 
-  TodoListState() : super();
+class TodoListInitialState extends TodoListState {}
+
+class TodoListLoadedState extends TodoListState {
+  @override
+  final List<Todo> todos;
+
+  TodoListLoadedState({required this.todos});
 }
