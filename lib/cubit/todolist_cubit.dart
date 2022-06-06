@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:todo_app/cubit/todo_list_states.dart';
 import 'package:todo_app/models/result.dart';
 import 'package:todo_app/repositories/todo_repository.dart';
@@ -14,10 +15,8 @@ import '../models/todo.dart';
 class TodolistCubit extends Cubit<TodoListState> {
   TodolistCubit() : super(TodoListInitialState(todos: const []));
 
-  final ITodoRepository iTodoRepository = TodoRepository(Dio());
-
   void fetchTodos() async {
-    final Result result = await FetchTodos(iTodoRepository)
+    final Result result = await GetIt.instance<FetchTodos>()
         .call(url: 'http://localhost:3005/api/notes');
 
     return result.isSuccess
@@ -26,7 +25,7 @@ class TodolistCubit extends Cubit<TodoListState> {
   }
 
   void addTodo(Todo todo) async {
-    final Result result = await NewTodo(iTodoRepository)
+    final Result result = await GetIt.instance<NewTodo>()
         .call(url: 'http://localhost:3005/api/notes', todo: todo);
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: [...state.todos, result.data]))
@@ -34,7 +33,7 @@ class TodolistCubit extends Cubit<TodoListState> {
   }
 
   void updateTodo(int index, bool? value) async {
-    final Result result = await DoneTodo(iTodoRepository)
+    final Result result = await GetIt.instance<DoneTodo>()
         .call(url: 'http://localhost:3005/api/note', id: state.todos[index].id);
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: result.data))
@@ -45,7 +44,7 @@ class TodolistCubit extends Cubit<TodoListState> {
     List<String?> todosId = state.todos.map((element) {
       if (element.done == true) return element.id;
     }).toList();
-    final Result result = await RemoveDoneTodos(iTodoRepository)
+    final Result result = await GetIt.instance<RemoveDoneTodos>()
         .call(todosId: todosId, url: 'http://localhost:3005/api/notes');
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: result.data))
