@@ -10,6 +10,7 @@ class Todo with _$Todo {
   factory Todo({
     required final String title,
     required final String id,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'text') required final String description,
     @Default(false) bool done,
   }) = _Todo;

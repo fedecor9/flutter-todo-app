@@ -1,10 +1,8 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo_app/cubit/todo_list_states.dart';
 import 'package:todo_app/models/result.dart';
-import 'package:todo_app/repositories/todo_repository.dart';
-import 'package:todo_app/repositories/todo_repository_interface.dart';
 import 'package:todo_app/use_cases/done_todo.dart';
 import 'package:todo_app/use_cases/fetch_todos.dart';
 import 'package:todo_app/use_cases/new_todo.dart';
@@ -21,7 +19,8 @@ class TodolistCubit extends Cubit<TodoListState> {
 
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: result.data))
-        : emit(state);
+        : emit(TodoListFailState(
+            todos: state.todos, error: result.error as String));
   }
 
   void addTodo(Todo todo) async {
@@ -29,7 +28,8 @@ class TodolistCubit extends Cubit<TodoListState> {
         .call(url: 'http://localhost:3005/api/notes', todo: todo);
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: [...state.todos, result.data]))
-        : emit(state);
+        : emit(TodoListFailState(
+            todos: state.todos, error: result.error as String));
   }
 
   void updateTodo(int index, bool? value) async {
@@ -37,7 +37,8 @@ class TodolistCubit extends Cubit<TodoListState> {
         .call(url: 'http://localhost:3005/api/note', id: state.todos[index].id);
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: result.data))
-        : emit(state);
+        : emit(TodoListFailState(
+            todos: state.todos, error: result.error as String));
   }
 
   void clearDone() async {
@@ -48,6 +49,7 @@ class TodolistCubit extends Cubit<TodoListState> {
         .call(todosId: todosId, url: 'http://localhost:3005/api/notes');
     return result.isSuccess
         ? emit(TodoListLoadedState(todos: result.data))
-        : emit(state);
+        : emit(TodoListFailState(
+            todos: state.todos, error: result.error as String));
   }
 }

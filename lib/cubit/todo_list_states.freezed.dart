@@ -211,6 +211,7 @@ class __$$_TodoListLoadedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
+// ignore: must_be_immutable
 class _$_TodoListLoadedState implements _TodoListLoadedState {
   _$_TodoListLoadedState({required this.todos});
 
@@ -238,5 +239,129 @@ abstract class _TodoListLoadedState implements TodoListLoadedState {
   @override
   @JsonKey(ignore: true)
   _$$_TodoListLoadedStateCopyWith<_$_TodoListLoadedState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TodoListFailState {
+  List<Todo> get todos => throw _privateConstructorUsedError;
+  set todos(List<Todo> value) => throw _privateConstructorUsedError;
+  String get error => throw _privateConstructorUsedError;
+  set error(String value) => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TodoListFailStateCopyWith<TodoListFailState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TodoListFailStateCopyWith<$Res> {
+  factory $TodoListFailStateCopyWith(
+          TodoListFailState value, $Res Function(TodoListFailState) then) =
+      _$TodoListFailStateCopyWithImpl<$Res>;
+  $Res call({List<Todo> todos, String error});
+}
+
+/// @nodoc
+class _$TodoListFailStateCopyWithImpl<$Res>
+    implements $TodoListFailStateCopyWith<$Res> {
+  _$TodoListFailStateCopyWithImpl(this._value, this._then);
+
+  final TodoListFailState _value;
+  // ignore: unused_field
+  final $Res Function(TodoListFailState) _then;
+
+  @override
+  $Res call({
+    Object? todos = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_value.copyWith(
+      todos: todos == freezed
+          ? _value.todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<Todo>,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_TodoListFailStateCopyWith<$Res>
+    implements $TodoListFailStateCopyWith<$Res> {
+  factory _$$_TodoListFailStateCopyWith(_$_TodoListFailState value,
+          $Res Function(_$_TodoListFailState) then) =
+      __$$_TodoListFailStateCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Todo> todos, String error});
+}
+
+/// @nodoc
+class __$$_TodoListFailStateCopyWithImpl<$Res>
+    extends _$TodoListFailStateCopyWithImpl<$Res>
+    implements _$$_TodoListFailStateCopyWith<$Res> {
+  __$$_TodoListFailStateCopyWithImpl(
+      _$_TodoListFailState _value, $Res Function(_$_TodoListFailState) _then)
+      : super(_value, (v) => _then(v as _$_TodoListFailState));
+
+  @override
+  _$_TodoListFailState get _value => super._value as _$_TodoListFailState;
+
+  @override
+  $Res call({
+    Object? todos = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_$_TodoListFailState(
+      todos: todos == freezed
+          ? _value.todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<Todo>,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+// ignore: must_be_immutable
+class _$_TodoListFailState implements _TodoListFailState {
+  _$_TodoListFailState({required this.todos, required this.error});
+
+  @override
+  List<Todo> todos;
+  @override
+  String error;
+
+  @override
+  String toString() {
+    return 'TodoListFailState(todos: $todos, error: $error)';
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TodoListFailStateCopyWith<_$_TodoListFailState> get copyWith =>
+      __$$_TodoListFailStateCopyWithImpl<_$_TodoListFailState>(
+          this, _$identity);
+}
+
+abstract class _TodoListFailState implements TodoListFailState {
+  factory _TodoListFailState(
+      {required List<Todo> todos,
+      required String error}) = _$_TodoListFailState;
+
+  @override
+  List<Todo> get todos => throw _privateConstructorUsedError;
+  @override
+  String get error => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TodoListFailStateCopyWith<_$_TodoListFailState> get copyWith =>
       throw _privateConstructorUsedError;
 }

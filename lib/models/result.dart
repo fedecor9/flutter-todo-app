@@ -26,6 +26,7 @@ abstract class Result<S> extends Equatable {
     }
   }
 
+  // ignore: prefer_const_constructors_in_immutables
   Result._();
 
   factory Result(S Function() computation) {

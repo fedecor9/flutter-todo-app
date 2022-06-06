@@ -17,9 +17,8 @@ class TodoRepository implements ITodoRepository {
         todos.add(Todo.fromJson(todo));
       }).toList();
       return Result.success(todos);
-    } on Exception catch (e) {
-      print(e);
-      return Result.failure(e);
+    } on DioError catch (e) {
+      return Result.failure(e.message);
     }
   }
 
@@ -28,9 +27,8 @@ class TodoRepository implements ITodoRepository {
     try {
       var response = await _dio.post(url, data: todo.toJson());
       return Result.success(Todo.fromJson(response.data));
-    } catch (e) {
-      print(e);
-      return Result.failure(e);
+    } on DioError catch (e) {
+      return Result.failure(e.message);
     }
   }
 
@@ -43,9 +41,8 @@ class TodoRepository implements ITodoRepository {
       var response = await _dio.put(url);
       response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
       return Result.success(todos);
-    } catch (e) {
-      print(e);
-      return Result.failure(e);
+    } on DioError catch (e) {
+      return Result.failure(e.message);
     }
   }
 
@@ -57,9 +54,8 @@ class TodoRepository implements ITodoRepository {
       var response = await _dio.put(url, data: todosId);
       response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
       return Result.success(todos);
-    } catch (e) {
-      print(e);
-      return Result.failure(e);
+    } on DioError catch (e) {
+      return Result.failure(e.message);
     }
   }
 }

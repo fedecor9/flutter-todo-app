@@ -21,6 +21,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.cubit<TodolistCubit>();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -34,7 +35,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
                   id: '',
                   title: tittleController.text,
                   description: descriptionController.text);
-              BlocProvider.of<TodolistCubit>(context).addTodo(item);
+              cubit.addTodo(item);
               Navigator.pop(
                 context,
                 item,
