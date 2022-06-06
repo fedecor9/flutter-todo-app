@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:todo_app/models/result.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/repositories/todo_repository_interface.dart';
 
@@ -8,58 +9,57 @@ class TodoRepository implements ITodoRepository {
   TodoRepository(this._dio);
 
   @override
-  Future<List<Todo>> getTodos({required String url}) async {
+  Future<Result> getTodos({required String url}) async {
     List<Todo> todos = [];
     try {
       var response = await _dio.get(url);
       response.data.map((todo) {
         todos.add(Todo.fromJson(todo));
       }).toList();
+      return Result.success(todos);
     } on Exception catch (e) {
       print(e);
+      return Result.failure(e);
     }
-    return todos;
   }
 
   @override
-  Future<Todo> addTodo({required String url, required Todo todo}) async {
-    Todo newTodo = Todo(title: '', description: '', id: '');
+  Future<Result> addTodo({required String url, required Todo todo}) async {
     try {
       var response = await _dio.post(url, data: todo.toJson());
-      if (response.statusCode == 200) {
-        newTodo = Todo.fromJson(response.data);
-      }
-      return newTodo;
+      return Result.success(Todo.fromJson(response.data));
     } catch (e) {
       print(e);
-      return newTodo;
+      return Result.failure(e);
     }
   }
 
   @override
-  Future<List<Todo>> updateTodo(
+  Future<Result> updateTodo(
       {required String url, required String todoId}) async {
     List<Todo> todos = [];
     url = '$url/$todoId';
     try {
       var response = await _dio.put(url);
       response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
+      return Result.success(todos);
     } catch (e) {
       print(e);
+      return Result.failure(e);
     }
-    return todos;
   }
 
   @override
-  Future<List<Todo>> removeTodos(
+  Future<Result> removeTodos(
       {required String url, required List<String?> todosId}) async {
     List<Todo> todos = [];
     try {
       var response = await _dio.put(url, data: todosId);
       response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
+      return Result.success(todos);
     } catch (e) {
       print(e);
+      return Result.failure(e);
     }
-    return todos;
   }
 }
