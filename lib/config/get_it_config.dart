@@ -9,7 +9,8 @@ import 'package:todo_app/use_cases/remove_done_todos.dart';
 
 extension GetItConfig on GetIt {
   void init() {
-    registerSingleton<ITodoRepository>(TodoRepository(Dio()));
+    registerSingleton<Dio>(Dio());
+    registerSingleton<TodoRepository>(TodoRepositoryImpl());
     registerSingleton<FetchTodos>(FetchTodos());
     registerSingleton<NewTodo>(NewTodo());
     registerSingleton<DoneTodo>(DoneTodo());

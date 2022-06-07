@@ -5,6 +5,8 @@ import 'package:todo_app/repositories/todo_repository_interface.dart';
 class DoneTodo {
   DoneTodo();
 
+  final _repository = GetIt.instance<TodoRepository>();
+
   Future<Result> call({required String url, required String id}) async =>
-      await GetIt.instance<ITodoRepository>().updateTodo(url: url, todoId: id);
+      await _repository.updateTodo(url: url, todoId: id);
 }

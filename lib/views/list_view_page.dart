@@ -5,8 +5,8 @@ import 'package:todo_app/extensions/build_context_extensions.dart';
 import 'package:todo_app/views/detailed_todo_page.dart';
 import 'package:todo_app/views/error_view.dart';
 
-import '../cubit/todo_list_states.dart';
-import '../models/todo.dart';
+import 'package:todo_app/cubit/todo_list_states.dart';
+import 'package:todo_app/models/todo.dart';
 
 class ListViewPage extends StatelessWidget {
   const ListViewPage({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/todolist_cubit.dart';
-import '../extensions/build_context_extensions.dart';
-import '../models/todo.dart';
+import 'package:todo_app/cubit/todolist_cubit.dart';
+import 'package:todo_app/extensions/build_context_extensions.dart';
+import 'package:todo_app/models/todo.dart';
 
 class NewTodoPage extends StatefulWidget {
   const NewTodoPage({Key? key}) : super(key: key);

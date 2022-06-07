@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/extensions/build_context_extensions.dart';
 
-import '../cubit/todo_list_states.dart';
+import 'package:todo_app/cubit/todo_list_states.dart';
 
 class DetaledTodoPage extends StatelessWidget {
   const DetaledTodoPage({Key? key}) : super(key: key);
@@ -69,7 +69,8 @@ class DetaledTodoPage extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 20),
                     child: TextButton(
                       onPressed: () {
-                        BlocProvider.of<TodolistCubit>(context)
+                        context
+                            .cubit<TodolistCubit>()
                             .updateTodo(index, !state.todos[index].done);
                       },
                       child: Text(

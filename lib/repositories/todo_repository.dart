@@ -1,29 +1,28 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:todo_app/models/result.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/repositories/todo_repository_interface.dart';
 
-class TodoRepository implements ITodoRepository {
-  final Dio _dio;
+class TodoRepositoryImpl implements TodoRepository {
+  final Dio _dio = GetIt.instance<Dio>();
 
-  TodoRepository(this._dio);
+  TodoRepositoryImpl();
 
   @override
-  Future<Result> getTodos({required String url}) async {
-    List<Todo> todos = [];
+  Future<Result<List<Todo>>> getTodos({required String url}) async {
     try {
       var response = await _dio.get(url);
-      response.data.map((todo) {
-        todos.add(Todo.fromJson(todo));
-      }).toList();
-      return Result.success(todos);
+      return Result.success(
+          response.data.map<Todo>((todo) => Todo.fromJson(todo)).toList());
     } on DioError catch (e) {
       return Result.failure(e.message);
     }
   }
 
   @override
-  Future<Result> addTodo({required String url, required Todo todo}) async {
+  Future<Result<Todo>> addTodo(
+      {required String url, required Todo todo}) async {
     try {
       var response = await _dio.post(url, data: todo.toJson());
       return Result.success(Todo.fromJson(response.data));
@@ -33,27 +32,25 @@ class TodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Result> updateTodo(
+  Future<Result<List<Todo>>> updateTodo(
       {required String url, required String todoId}) async {
-    List<Todo> todos = [];
     url = '$url/$todoId';
     try {
       var response = await _dio.put(url);
-      response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
-      return Result.success(todos);
+      return Result.success(
+          response.data.map<Todo>((todo) => Todo.fromJson(todo)).toList());
     } on DioError catch (e) {
       return Result.failure(e.message);
     }
   }
 
   @override
-  Future<Result> removeTodos(
+  Future<Result<List<Todo>>> removeTodos(
       {required String url, required List<String?> todosId}) async {
-    List<Todo> todos = [];
     try {
       var response = await _dio.put(url, data: todosId);
-      response.data.map((todo) => todos.add(Todo.fromJson(todo))).toList();
-      return Result.success(todos);
+      return Result.success(
+          response.data.map<Todo>((todo) => Todo.fromJson(todo)).toList());
     } on DioError catch (e) {
       return Result.failure(e.message);
     }

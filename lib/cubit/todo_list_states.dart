@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../models/todo.dart';
+import 'package:todo_app/models/todo.dart';
 part 'todo_list_states.freezed.dart';
 
 @immutable

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/views/home_page.dart';
-import 'config/get_it_config.dart';
+import 'package:todo_app/config/get_it_config.dart';
 
 void main(List<String> args) {
   GetIt.instance.init();

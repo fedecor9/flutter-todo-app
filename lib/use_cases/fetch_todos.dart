@@ -4,7 +4,8 @@ import 'package:todo_app/repositories/todo_repository_interface.dart';
 
 class FetchTodos {
   FetchTodos();
+  final _repository = GetIt.instance<TodoRepository>();
 
   Future<Result> call({required String url}) async =>
-      await GetIt.instance<ITodoRepository>().getTodos(url: url);
+      await _repository.getTodos(url: url);
 }
