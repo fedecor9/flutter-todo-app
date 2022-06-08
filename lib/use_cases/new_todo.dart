@@ -8,6 +8,6 @@ class NewTodo {
   NewTodo();
   final _repository = GetIt.instance<TodoRepository>();
 
-  Future<Result> call({required String url, required Todo todo}) async =>
-      await _repository.addTodo(url: url, todo: todo);
+  Future<Result> call({required Todo todo}) async =>
+      await _repository.addTodo(todo: todo);
 }

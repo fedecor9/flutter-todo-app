@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/animations/fade_in.dart';
 import 'package:todo_app/cubit/todolist_cubit.dart';
 import 'package:todo_app/extensions/build_context_extensions.dart';
 import 'package:todo_app/views/detailed_todo_page.dart';
@@ -66,27 +67,31 @@ class ListViewPage extends StatelessWidget {
               ? ClearDoneTodos(
                   handleClearDone: cubit.clearDone,
                 )
-              : ListTile(
-                  title: Text(state[index].title),
-                  subtitle: Text(state[index].title),
-                  trailing: Checkbox(
-                    value: state[index].done,
-                    onChanged: (bool? newValue) =>
-                        cubit.updateTodo(index, newValue),
-                    checkColor: Colors.white,
-                    activeColor: const Color.fromARGB(255, 244, 2, 164),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DetaledTodoPage(),
-                        settings: RouteSettings(
-                          arguments: index,
+              : FadeIn(
+                  delay: 1.0,
+                  child: ListTile(
+                    key: ObjectKey(state[index].id),
+                    title: Text(state[index].title),
+                    subtitle: Text(state[index].title),
+                    trailing: Checkbox(
+                      value: state[index].done,
+                      onChanged: (bool? newValue) =>
+                          cubit.updateTodo(index, newValue),
+                      checkColor: Colors.white,
+                      activeColor: const Color.fromARGB(255, 244, 2, 164),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetaledTodoPage(),
+                          settings: RouteSettings(
+                            arguments: index,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 );
         }),
         separatorBuilder: (BuildContext context, int index) {

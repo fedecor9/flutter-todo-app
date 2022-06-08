@@ -6,6 +6,5 @@ class FetchTodos {
   FetchTodos();
   final _repository = GetIt.instance<TodoRepository>();
 
-  Future<Result> call({required String url}) async =>
-      await _repository.getTodos(url: url);
+  Future<Result> call() async => await _repository.getTodos();
 }

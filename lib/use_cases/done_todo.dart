@@ -7,6 +7,6 @@ class DoneTodo {
 
   final _repository = GetIt.instance<TodoRepository>();
 
-  Future<Result> call({required String url, required String id}) async =>
-      await _repository.updateTodo(url: url, todoId: id);
+  Future<Result> call({required String id}) async =>
+      await _repository.updateTodo(todoId: id);
 }

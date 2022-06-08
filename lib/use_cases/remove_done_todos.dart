@@ -6,7 +6,6 @@ class RemoveDoneTodos {
   RemoveDoneTodos();
   final _repository = GetIt.instance<TodoRepository>();
 
-  Future<Result> call(
-          {required String url, required List<String?> todosId}) async =>
-      await _repository.removeTodos(url: url, todosId: todosId);
+  Future<Result> call({required List<String?> todosId}) async =>
+      await _repository.removeTodos(todosId: todosId);
 }

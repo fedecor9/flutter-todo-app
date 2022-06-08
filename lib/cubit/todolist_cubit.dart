@@ -12,11 +12,8 @@ import 'package:todo_app/models/todo.dart';
 class TodolistCubit extends Cubit<TodoListState> {
   TodolistCubit() : super(const TodoListState.initial(todos: [], succes: true));
 
-  final String _url = 'http://localhost:3005/api';
-
   void fetchTodos() async {
-    final Result result =
-        await GetIt.instance<FetchTodos>().call(url: '$_url/notes');
+    final Result result = await GetIt.instance<FetchTodos>().call();
 
     return result.isSuccess
         ? emit(TodoListState.loaded(todos: result.data, succes: true))
@@ -25,8 +22,7 @@ class TodolistCubit extends Cubit<TodoListState> {
   }
 
   void addTodo(Todo todo) async {
-    final Result result =
-        await GetIt.instance<NewTodo>().call(url: '$_url/notes', todo: todo);
+    final Result result = await GetIt.instance<NewTodo>().call(todo: todo);
     return result.isSuccess
         ? emit(TodoListState.loaded(
             todos: [...state.todos, result.data], succes: true))
@@ -35,8 +31,8 @@ class TodolistCubit extends Cubit<TodoListState> {
   }
 
   void updateTodo(int index, bool? value) async {
-    final Result result = await GetIt.instance<DoneTodo>()
-        .call(url: '$_url/note', id: state.todos[index].id);
+    final Result result =
+        await GetIt.instance<DoneTodo>().call(id: state.todos[index].id);
     return result.isSuccess
         ? emit(TodoListState.loaded(todos: result.data, succes: true))
         : emit(TodoListState.fail(
@@ -47,8 +43,8 @@ class TodolistCubit extends Cubit<TodoListState> {
     List<String?> todosId = state.todos.map((element) {
       if (element.done == true) return element.id;
     }).toList();
-    final Result result = await GetIt.instance<RemoveDoneTodos>()
-        .call(todosId: todosId, url: '$_url/notes');
+    final Result result =
+        await GetIt.instance<RemoveDoneTodos>().call(todosId: todosId);
     return result.isSuccess
         ? emit(TodoListState.loaded(todos: result.data, succes: true))
         : emit(TodoListState.fail(
