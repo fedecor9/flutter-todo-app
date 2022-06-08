@@ -15,82 +15,135 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$TodoListInitialState {
+mixin _$TodoListState {
   List<Todo> get todos => throw _privateConstructorUsedError;
+  bool get succes => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Todo> todos, bool succes) initial,
+    required TResult Function(List<Todo> todos, bool succes) loaded,
+    required TResult Function(List<Todo> todos, bool succes, String error) fail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Fail value) fail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TodoListInitialStateCopyWith<TodoListInitialState> get copyWith =>
+  $TodoListStateCopyWith<TodoListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoListInitialStateCopyWith<$Res> {
-  factory $TodoListInitialStateCopyWith(TodoListInitialState value,
-          $Res Function(TodoListInitialState) then) =
-      _$TodoListInitialStateCopyWithImpl<$Res>;
-  $Res call({List<Todo> todos});
+abstract class $TodoListStateCopyWith<$Res> {
+  factory $TodoListStateCopyWith(
+          TodoListState value, $Res Function(TodoListState) then) =
+      _$TodoListStateCopyWithImpl<$Res>;
+  $Res call({List<Todo> todos, bool succes});
 }
 
 /// @nodoc
-class _$TodoListInitialStateCopyWithImpl<$Res>
-    implements $TodoListInitialStateCopyWith<$Res> {
-  _$TodoListInitialStateCopyWithImpl(this._value, this._then);
+class _$TodoListStateCopyWithImpl<$Res>
+    implements $TodoListStateCopyWith<$Res> {
+  _$TodoListStateCopyWithImpl(this._value, this._then);
 
-  final TodoListInitialState _value;
+  final TodoListState _value;
   // ignore: unused_field
-  final $Res Function(TodoListInitialState) _then;
+  final $Res Function(TodoListState) _then;
 
   @override
   $Res call({
     Object? todos = freezed,
+    Object? succes = freezed,
   }) {
     return _then(_value.copyWith(
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
+      succes: succes == freezed
+          ? _value.succes
+          : succes // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_TodoListInitialStateCopyWith<$Res>
-    implements $TodoListInitialStateCopyWith<$Res> {
-  factory _$$_TodoListInitialStateCopyWith(_$_TodoListInitialState value,
-          $Res Function(_$_TodoListInitialState) then) =
-      __$$_TodoListInitialStateCopyWithImpl<$Res>;
+abstract class _$$InitialCopyWith<$Res>
+    implements $TodoListStateCopyWith<$Res> {
+  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
+      __$$InitialCopyWithImpl<$Res>;
   @override
-  $Res call({List<Todo> todos});
+  $Res call({List<Todo> todos, bool succes});
 }
 
 /// @nodoc
-class __$$_TodoListInitialStateCopyWithImpl<$Res>
-    extends _$TodoListInitialStateCopyWithImpl<$Res>
-    implements _$$_TodoListInitialStateCopyWith<$Res> {
-  __$$_TodoListInitialStateCopyWithImpl(_$_TodoListInitialState _value,
-      $Res Function(_$_TodoListInitialState) _then)
-      : super(_value, (v) => _then(v as _$_TodoListInitialState));
+class __$$InitialCopyWithImpl<$Res> extends _$TodoListStateCopyWithImpl<$Res>
+    implements _$$InitialCopyWith<$Res> {
+  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+      : super(_value, (v) => _then(v as _$Initial));
 
   @override
-  _$_TodoListInitialState get _value => super._value as _$_TodoListInitialState;
+  _$Initial get _value => super._value as _$Initial;
 
   @override
   $Res call({
     Object? todos = freezed,
+    Object? succes = freezed,
   }) {
-    return _then(_$_TodoListInitialState(
+    return _then(_$Initial(
       todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
+      succes: succes == freezed
+          ? _value.succes
+          : succes // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_TodoListInitialState implements _TodoListInitialState {
-  _$_TodoListInitialState({required final List<Todo> todos}) : _todos = todos;
+class _$Initial with DiagnosticableTreeMixin implements Initial {
+  const _$Initial({required final List<Todo> todos, required this.succes})
+      : _todos = todos;
 
   final List<Todo> _todos;
   @override
@@ -100,187 +153,326 @@ class _$_TodoListInitialState implements _TodoListInitialState {
   }
 
   @override
-  String toString() {
-    return 'TodoListInitialState(todos: $todos)';
+  final bool succes;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TodoListState.initial(todos: $todos, succes: $succes)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TodoListState.initial'))
+      ..add(DiagnosticsProperty('todos', todos))
+      ..add(DiagnosticsProperty('succes', succes));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TodoListInitialState &&
-            const DeepCollectionEquality().equals(other._todos, _todos));
+            other is _$Initial &&
+            const DeepCollectionEquality().equals(other._todos, _todos) &&
+            const DeepCollectionEquality().equals(other.succes, succes));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_todos),
+      const DeepCollectionEquality().hash(succes));
 
   @JsonKey(ignore: true)
   @override
-  _$$_TodoListInitialStateCopyWith<_$_TodoListInitialState> get copyWith =>
-      __$$_TodoListInitialStateCopyWithImpl<_$_TodoListInitialState>(
-          this, _$identity);
+  _$$InitialCopyWith<_$Initial> get copyWith =>
+      __$$InitialCopyWithImpl<_$Initial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Todo> todos, bool succes) initial,
+    required TResult Function(List<Todo> todos, bool succes) loaded,
+    required TResult Function(List<Todo> todos, bool succes, String error) fail,
+  }) {
+    return initial(todos, succes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+  }) {
+    return initial?.call(todos, succes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(todos, succes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Fail value) fail,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _TodoListInitialState implements TodoListInitialState {
-  factory _TodoListInitialState({required final List<Todo> todos}) =
-      _$_TodoListInitialState;
+abstract class Initial implements TodoListState {
+  const factory Initial(
+      {required final List<Todo> todos,
+      required final bool succes}) = _$Initial;
 
   @override
   List<Todo> get todos => throw _privateConstructorUsedError;
   @override
+  bool get succes => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$$_TodoListInitialStateCopyWith<_$_TodoListInitialState> get copyWith =>
+  _$$InitialCopyWith<_$Initial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$TodoListLoadedState {
-  List<Todo> get todos => throw _privateConstructorUsedError;
-  set todos(List<Todo> value) => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TodoListLoadedStateCopyWith<TodoListLoadedState> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _$$LoadedCopyWith<$Res> implements $TodoListStateCopyWith<$Res> {
+  factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
+      __$$LoadedCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Todo> todos, bool succes});
 }
 
 /// @nodoc
-abstract class $TodoListLoadedStateCopyWith<$Res> {
-  factory $TodoListLoadedStateCopyWith(
-          TodoListLoadedState value, $Res Function(TodoListLoadedState) then) =
-      _$TodoListLoadedStateCopyWithImpl<$Res>;
-  $Res call({List<Todo> todos});
-}
+class __$$LoadedCopyWithImpl<$Res> extends _$TodoListStateCopyWithImpl<$Res>
+    implements _$$LoadedCopyWith<$Res> {
+  __$$LoadedCopyWithImpl(_$Loaded _value, $Res Function(_$Loaded) _then)
+      : super(_value, (v) => _then(v as _$Loaded));
 
-/// @nodoc
-class _$TodoListLoadedStateCopyWithImpl<$Res>
-    implements $TodoListLoadedStateCopyWith<$Res> {
-  _$TodoListLoadedStateCopyWithImpl(this._value, this._then);
-
-  final TodoListLoadedState _value;
-  // ignore: unused_field
-  final $Res Function(TodoListLoadedState) _then;
+  @override
+  _$Loaded get _value => super._value as _$Loaded;
 
   @override
   $Res call({
     Object? todos = freezed,
+    Object? succes = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_$Loaded(
       todos: todos == freezed
-          ? _value.todos
+          ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
+      succes: succes == freezed
+          ? _value.succes
+          : succes // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_TodoListLoadedStateCopyWith<$Res>
-    implements $TodoListLoadedStateCopyWith<$Res> {
-  factory _$$_TodoListLoadedStateCopyWith(_$_TodoListLoadedState value,
-          $Res Function(_$_TodoListLoadedState) then) =
-      __$$_TodoListLoadedStateCopyWithImpl<$Res>;
-  @override
-  $Res call({List<Todo> todos});
-}
 
-/// @nodoc
-class __$$_TodoListLoadedStateCopyWithImpl<$Res>
-    extends _$TodoListLoadedStateCopyWithImpl<$Res>
-    implements _$$_TodoListLoadedStateCopyWith<$Res> {
-  __$$_TodoListLoadedStateCopyWithImpl(_$_TodoListLoadedState _value,
-      $Res Function(_$_TodoListLoadedState) _then)
-      : super(_value, (v) => _then(v as _$_TodoListLoadedState));
+class _$Loaded with DiagnosticableTreeMixin implements Loaded {
+  const _$Loaded({required final List<Todo> todos, required this.succes})
+      : _todos = todos;
+
+  final List<Todo> _todos;
+  @override
+  List<Todo> get todos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todos);
+  }
 
   @override
-  _$_TodoListLoadedState get _value => super._value as _$_TodoListLoadedState;
+  final bool succes;
 
   @override
-  $Res call({
-    Object? todos = freezed,
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TodoListState.loaded(todos: $todos, succes: $succes)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TodoListState.loaded'))
+      ..add(DiagnosticsProperty('todos', todos))
+      ..add(DiagnosticsProperty('succes', succes));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Loaded &&
+            const DeepCollectionEquality().equals(other._todos, _todos) &&
+            const DeepCollectionEquality().equals(other.succes, succes));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_todos),
+      const DeepCollectionEquality().hash(succes));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$LoadedCopyWith<_$Loaded> get copyWith =>
+      __$$LoadedCopyWithImpl<_$Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Todo> todos, bool succes) initial,
+    required TResult Function(List<Todo> todos, bool succes) loaded,
+    required TResult Function(List<Todo> todos, bool succes, String error) fail,
   }) {
-    return _then(_$_TodoListLoadedState(
-      todos: todos == freezed
-          ? _value.todos
-          : todos // ignore: cast_nullable_to_non_nullable
-              as List<Todo>,
-    ));
+    return loaded(todos, succes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+  }) {
+    return loaded?.call(todos, succes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(todos, succes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Fail value) fail,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-
-// ignore: must_be_immutable
-class _$_TodoListLoadedState implements _TodoListLoadedState {
-  _$_TodoListLoadedState({required this.todos});
-
-  @override
-  List<Todo> todos;
-
-  @override
-  String toString() {
-    return 'TodoListLoadedState(todos: $todos)';
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_TodoListLoadedStateCopyWith<_$_TodoListLoadedState> get copyWith =>
-      __$$_TodoListLoadedStateCopyWithImpl<_$_TodoListLoadedState>(
-          this, _$identity);
-}
-
-abstract class _TodoListLoadedState implements TodoListLoadedState {
-  factory _TodoListLoadedState({required List<Todo> todos}) =
-      _$_TodoListLoadedState;
+abstract class Loaded implements TodoListState {
+  const factory Loaded(
+      {required final List<Todo> todos, required final bool succes}) = _$Loaded;
 
   @override
   List<Todo> get todos => throw _privateConstructorUsedError;
   @override
+  bool get succes => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$$_TodoListLoadedStateCopyWith<_$_TodoListLoadedState> get copyWith =>
+  _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$TodoListFailState {
-  List<Todo> get todos => throw _privateConstructorUsedError;
-  set todos(List<Todo> value) => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
-  set error(String value) => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TodoListFailStateCopyWith<TodoListFailState> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _$$FailCopyWith<$Res> implements $TodoListStateCopyWith<$Res> {
+  factory _$$FailCopyWith(_$Fail value, $Res Function(_$Fail) then) =
+      __$$FailCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Todo> todos, bool succes, String error});
 }
 
 /// @nodoc
-abstract class $TodoListFailStateCopyWith<$Res> {
-  factory $TodoListFailStateCopyWith(
-          TodoListFailState value, $Res Function(TodoListFailState) then) =
-      _$TodoListFailStateCopyWithImpl<$Res>;
-  $Res call({List<Todo> todos, String error});
-}
+class __$$FailCopyWithImpl<$Res> extends _$TodoListStateCopyWithImpl<$Res>
+    implements _$$FailCopyWith<$Res> {
+  __$$FailCopyWithImpl(_$Fail _value, $Res Function(_$Fail) _then)
+      : super(_value, (v) => _then(v as _$Fail));
 
-/// @nodoc
-class _$TodoListFailStateCopyWithImpl<$Res>
-    implements $TodoListFailStateCopyWith<$Res> {
-  _$TodoListFailStateCopyWithImpl(this._value, this._then);
-
-  final TodoListFailState _value;
-  // ignore: unused_field
-  final $Res Function(TodoListFailState) _then;
+  @override
+  _$Fail get _value => super._value as _$Fail;
 
   @override
   $Res call({
     Object? todos = freezed,
+    Object? succes = freezed,
     Object? error = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_$Fail(
       todos: todos == freezed
-          ? _value.todos
+          ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
+      succes: succes == freezed
+          ? _value.succes
+          : succes // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -290,78 +482,144 @@ class _$TodoListFailStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_TodoListFailStateCopyWith<$Res>
-    implements $TodoListFailStateCopyWith<$Res> {
-  factory _$$_TodoListFailStateCopyWith(_$_TodoListFailState value,
-          $Res Function(_$_TodoListFailState) then) =
-      __$$_TodoListFailStateCopyWithImpl<$Res>;
-  @override
-  $Res call({List<Todo> todos, String error});
-}
 
-/// @nodoc
-class __$$_TodoListFailStateCopyWithImpl<$Res>
-    extends _$TodoListFailStateCopyWithImpl<$Res>
-    implements _$$_TodoListFailStateCopyWith<$Res> {
-  __$$_TodoListFailStateCopyWithImpl(
-      _$_TodoListFailState _value, $Res Function(_$_TodoListFailState) _then)
-      : super(_value, (v) => _then(v as _$_TodoListFailState));
+class _$Fail with DiagnosticableTreeMixin implements Fail {
+  const _$Fail(
+      {required final List<Todo> todos,
+      required this.succes,
+      required this.error})
+      : _todos = todos;
 
+  final List<Todo> _todos;
   @override
-  _$_TodoListFailState get _value => super._value as _$_TodoListFailState;
-
-  @override
-  $Res call({
-    Object? todos = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$_TodoListFailState(
-      todos: todos == freezed
-          ? _value.todos
-          : todos // ignore: cast_nullable_to_non_nullable
-              as List<Todo>,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  List<Todo> get todos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todos);
   }
-}
-
-/// @nodoc
-
-// ignore: must_be_immutable
-class _$_TodoListFailState implements _TodoListFailState {
-  _$_TodoListFailState({required this.todos, required this.error});
 
   @override
-  List<Todo> todos;
+  final bool succes;
   @override
-  String error;
+  final String error;
 
   @override
-  String toString() {
-    return 'TodoListFailState(todos: $todos, error: $error)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TodoListState.fail(todos: $todos, succes: $succes, error: $error)';
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TodoListState.fail'))
+      ..add(DiagnosticsProperty('todos', todos))
+      ..add(DiagnosticsProperty('succes', succes))
+      ..add(DiagnosticsProperty('error', error));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Fail &&
+            const DeepCollectionEquality().equals(other._todos, _todos) &&
+            const DeepCollectionEquality().equals(other.succes, succes) &&
+            const DeepCollectionEquality().equals(other.error, error));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_todos),
+      const DeepCollectionEquality().hash(succes),
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  _$$_TodoListFailStateCopyWith<_$_TodoListFailState> get copyWith =>
-      __$$_TodoListFailStateCopyWithImpl<_$_TodoListFailState>(
-          this, _$identity);
+  _$$FailCopyWith<_$Fail> get copyWith =>
+      __$$FailCopyWithImpl<_$Fail>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Todo> todos, bool succes) initial,
+    required TResult Function(List<Todo> todos, bool succes) loaded,
+    required TResult Function(List<Todo> todos, bool succes, String error) fail,
+  }) {
+    return fail(todos, succes, error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+  }) {
+    return fail?.call(todos, succes, error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Todo> todos, bool succes)? initial,
+    TResult Function(List<Todo> todos, bool succes)? loaded,
+    TResult Function(List<Todo> todos, bool succes, String error)? fail,
+    required TResult orElse(),
+  }) {
+    if (fail != null) {
+      return fail(todos, succes, error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(Fail value) fail,
+  }) {
+    return fail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+  }) {
+    return fail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(Fail value)? fail,
+    required TResult orElse(),
+  }) {
+    if (fail != null) {
+      return fail(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _TodoListFailState implements TodoListFailState {
-  factory _TodoListFailState(
-      {required List<Todo> todos,
-      required String error}) = _$_TodoListFailState;
+abstract class Fail implements TodoListState {
+  const factory Fail(
+      {required final List<Todo> todos,
+      required final bool succes,
+      required final String error}) = _$Fail;
 
   @override
   List<Todo> get todos => throw _privateConstructorUsedError;
   @override
+  bool get succes => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_TodoListFailStateCopyWith<_$_TodoListFailState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$FailCopyWith<_$Fail> get copyWith => throw _privateConstructorUsedError;
 }

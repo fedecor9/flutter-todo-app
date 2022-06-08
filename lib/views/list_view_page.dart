@@ -15,9 +15,10 @@ class ListViewPage extends StatelessWidget {
     final cubit = context.cubit<TodolistCubit>();
     return BlocConsumer<TodolistCubit, TodoListState>(
       listener: (context, state) {
-        if (state is TodoListFailState) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(errorMessageView(state.error));
+        if (!state.succes) {
+          String error = state.maybeWhen(
+              fail: ((todos, succes, error) => error), orElse: () => '');
+          ScaffoldMessenger.of(context).showSnackBar(errorMessageView(error));
         }
       },
       builder: (context, state) {
@@ -44,7 +45,7 @@ class ListViewPage extends StatelessWidget {
 
   Container emtpyTodoList() {
     return Container(
-      color: Colors.grey[100],
+      color: Colors.grey[200],
       child: const Center(
         child: Text(
           "You don't have any todos",
@@ -111,7 +112,7 @@ class ClearDoneTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[50],
+      color: Colors.grey[200],
       child: TextButton(
         onPressed: handleClearDone,
         child: const Text(

@@ -21,7 +21,8 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Todo {
   String get title => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'text')
   String get description => throw _privateConstructorUsedError;
   bool get done => throw _privateConstructorUsedError;
@@ -143,6 +144,7 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
   final String title;
   @override
   final String id;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'text')
   final String description;
@@ -190,7 +192,7 @@ abstract class _Todo implements Todo {
   String get title => throw _privateConstructorUsedError;
   @override
   String get id => throw _privateConstructorUsedError;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'text')
   String get description => throw _privateConstructorUsedError;
   @override

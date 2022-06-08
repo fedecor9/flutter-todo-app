@@ -13,6 +13,7 @@ class DetaledTodoPage extends StatelessWidget {
     final index = context.arguments as int;
 
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Details'),
         leading: Row(

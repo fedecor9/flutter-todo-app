@@ -56,7 +56,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
         title: const Text('New task'),
       ),
       body: Container(
-        color: Colors.grey[100],
+        color: Colors.grey[200],
         child: Column(
           children: [
             Container(

@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('Todo'),
         centerTitle: true,
@@ -28,10 +29,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.grey[100],
-        child: const ListViewPage(),
-      ),
+      body: const ListViewPage(),
     );
   }
 }
