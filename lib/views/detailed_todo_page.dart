@@ -45,11 +45,25 @@ class DetaledTodoPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  state.todos[index].done ? 'Done' : 'Not done',
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 244, 2, 164),
-                      fontWeight: FontWeight.w500),
+                AnimatedCrossFade(
+                  firstCurve: Curves.easeInOut,
+                  secondCurve: Curves.easeIn,
+                  crossFadeState: state.todos[index].done
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: const Duration(milliseconds: 300),
+                  firstChild: const Text(
+                    'Done',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 244, 2, 164),
+                        fontWeight: FontWeight.w500),
+                  ),
+                  secondChild: const Text(
+                    'Not done',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 244, 2, 164),
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
@@ -74,13 +88,25 @@ class DetaledTodoPage extends StatelessWidget {
                             .cubit<TodolistCubit>()
                             .updateTodo(index, !state.todos[index].done);
                       },
-                      child: Text(
-                        state.todos[index].done
-                            ? 'MARK AS NOT DONE'
-                            : 'MARK AS DONE',
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 244, 2, 164),
-                            fontWeight: FontWeight.w600),
+                      child: AnimatedCrossFade(
+                        firstCurve: Curves.easeInOut,
+                        secondCurve: Curves.easeIn,
+                        crossFadeState: !state.todos[index].done
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
+                        duration: const Duration(milliseconds: 200),
+                        firstChild: const Text(
+                          'MARK AS DONE',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 244, 2, 164),
+                              fontWeight: FontWeight.w600),
+                        ),
+                        secondChild: const Text(
+                          'MARK AS NOT DONE',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 244, 2, 164),
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                   ),

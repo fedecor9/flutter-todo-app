@@ -70,6 +70,7 @@ class ListViewPage extends StatelessWidget {
               : FadeIn(
                   delay: 1.0,
                   child: ListTile(
+                    //tileColor: Colors.white,
                     key: ObjectKey(state[index].id),
                     title: Text(state[index].title),
                     subtitle: Text(state[index].title),
